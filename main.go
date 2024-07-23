@@ -1,56 +1,42 @@
 package main
 
-/*
-bool
-string
-int int8 int16 int32 int64
-uint uint8 uint16 uint32 uint64
-byte (uint8)
-rune (int32)
-float32, float64
-complex64, complex128
-*/
-
-import (
-	"fmt"
-	"unsafe"
-)
-
-// standart syntax
-var name string
-var cond bool
-var ourtCond = true
-
-// const var
-const age = 100
+import "fmt"
 
 func main() {
-	//local var
-	var name string
-	name = "localVar"
-	fmt.Println(name)
+	x, y := 2, 3
 
-	// short syntax (only in func)
-	shortVar := 19
+	greet()
+	greetWithParameter("Vova")
+	greetWithParameters("Vova", "Bilan")
+	fmt.Println("Result of sum: ", sum(x, y))
+	sum, mult := sumAndMultiply(x, y)
+	fmt.Printf("Result of sum and multiply: %d and %d\n", sum, mult)
+	_, mult32 := namedSumAndMultiply(x, y) // var _ - proxy
+	fmt.Printf("Result of multiply: %d\n", mult32)
+}
 
-	fmt.Println(cond)
-	cond = true
-	fmt.Println(cond)
+func greet() {
+	fmt.Println("Wusup")
+}
 
-	//init
-	name = "Vova"
-	fmt.Printf("Type: %T Value: %v\n", name, name)
+func greetWithParameter(name string) {
+	fmt.Printf("Hello, %s!\n", name)
+}
 
-	fmt.Println(shortVar)
-	fmt.Println(ourtCond)
+func greetWithParameters(name, surname string) {
+	fmt.Printf("Hello, %s %s!\n", name, surname)
+}
 
-	//cast
-	var i1 int64 = 15
-	var i2 int8 = 15
-	fmt.Println(int8(i1) + i2)
+func sum(first int, second int) int {
+	return first + second
+}
 
-	fmt.Println(unsafe.Sizeof(int8(1)))  //1 byte
-	fmt.Println(unsafe.Sizeof(int16(1))) //2 byte
-	fmt.Println(unsafe.Sizeof(int32(1))) //4 byte
-	fmt.Println(unsafe.Sizeof(int64(1))) //8 byte
+func sumAndMultiply(first int, second int) (int, int) {
+	return first + second, first * second
+}
+
+func namedSumAndMultiply(first int, second int) (sum int32, mult int32) {
+	sum = int32(first + second)
+	mult = int32(first * second)
+	return // or return sum, mult
 }
