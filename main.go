@@ -3,32 +3,44 @@ package main
 import "fmt"
 
 func main() {
-	//classic for syntax
-	var j int
-	for j = 0; j < 10; j++ {
-		fmt.Println(j)
-	}
+	var intPointer *int
+	fmt.Printf("Int pointer is %v\n", intPointer)
 
-	//short classic for syntax
-	for i := 0; i < 10; i++ {
-		fmt.Println(i)
-	}
+	var a int = 9
+	var aPointer *int = &a
+	fmt.Printf("aPointer is %#v %#v \n", aPointer, *aPointer)
 
-	//for without init and increment/decrement
-	sum := 1
-	for sum < 20 {
-		sum += sum
-		fmt.Println(sum)
-	}
+	var newPointer = new(int)
+	fmt.Printf("newPointer is %#v %#v \n", newPointer, *newPointer)
+	*newPointer = 10
+	fmt.Printf("newPointer is %#v %#v \n", newPointer, *newPointer)
 
-	//for like a WHILE in other languages
-	for sum <= 100 {
-		sum += 1
-		fmt.Println(sum)
-	}
+	num := 3
+	square(num)
+	fmt.Println(num)
 
-	// infinite cycle
-	for {
-		fmt.Println("Stop me please")
-	}
+	squarePointer(&num)
+	fmt.Println(num)
+
+	// empty value flag
+	var wallet1 *int
+	fmt.Println(hasWallet(wallet1))
+
+	wallet2 := 0
+	fmt.Println(hasWallet(&wallet2))
+
+	wallet3 := 100
+	fmt.Println(hasWallet(&wallet3))
+}
+
+func square(num int) {
+	num *= num
+}
+
+func squarePointer(num *int) {
+	*num = *num * *num
+}
+
+func hasWallet(money *int) bool {
+	return money != nil
 }
