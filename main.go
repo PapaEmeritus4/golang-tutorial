@@ -3,49 +3,32 @@ package main
 import "fmt"
 
 func main() {
-	var firstVariable bool
-	fmt.Println(firstVariable)
-
-	secondVariable := true
-	fmt.Println(secondVariable)
-
-	age := 15
-
-	// Basic if
-	if age < 18 { // or: if (age < 18) == true {
-		fmt.Println("You are too young (full)")
+	//classic for syntax
+	var j int
+	for j = 0; j < 10; j++ {
+		fmt.Println(j)
 	}
 
-	//Short syntax
-	if isChild := isChildren(age); isChild == true { // shorter: if isChild := isChildren(age); isChild {
-		fmt.Println("You are too young (short)")
-		fmt.Println(isChild)
+	//short classic for syntax
+	for i := 0; i < 10; i++ {
+		fmt.Println(i)
 	}
 
-	// If ... else
-	age = 20
-	if age < 18 {
-		fmt.Println("you are too young")
-	} else {
-		fmt.Println("You are an adult")
+	//for without init and increment/decrement
+	sum := 1
+	for sum < 20 {
+		sum += sum
+		fmt.Println(sum)
 	}
 
-	// &&
-	if age >= 7 && age <= 18 {
-		fmt.Println("You are in school")
+	//for like a WHILE in other languages
+	for sum <= 100 {
+		sum += 1
+		fmt.Println(sum)
 	}
 
-	// ||
-	if age == 14 || age == 20 || age == 40 {
-		fmt.Println("You have to get a new passport")
+	// infinite cycle
+	for {
+		fmt.Println("Stop me please")
 	}
-
-	// !
-	if !isChildren(age) {
-		fmt.Println("You are an adult")
-	}
-}
-
-func isChildren(age int) bool {
-	return age < 18
 }
